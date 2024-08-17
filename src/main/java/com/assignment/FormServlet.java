@@ -13,12 +13,18 @@ import java.io.IOException;
         urlPatterns = {"/FormServlet"}
 )
 public class FormServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
-
         req.setAttribute("username", username);
-
         req.getRequestDispatcher("UserDisplay.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        req.setAttribute("username", username);
+        req.getRequestDispatcher("UserDisplay.jsp").include(req, resp);
     }
 }
