@@ -15,9 +15,11 @@ public class FormEmailServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
+        resp.setContentType("text/html");
 
         PrintWriter p = resp.getWriter();
         p.println("<h1>Email:" + email + "</h1>");
+        p.println("Hello, " + email);
         getServletContext().getRequestDispatcher("/email.html").include(req, resp);
         p.close();
     }
